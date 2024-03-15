@@ -1,0 +1,2 @@
+Game is located at https://play.unity.com/mg/other/webgl-builds-383335.
+How to play. Switch views by using the 1, 2, 3 keys. In first person: Use WASD keys to move around and use mouse to look around. Press left mouse button to execute activity. In third person: Move forward/back using WS keys. Rotate camera using AD keys. Use pointer and click on activities to execute them.  The artifact has two domain representation. Press Enter to switch between them.
