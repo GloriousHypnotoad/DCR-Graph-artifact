@@ -70,51 +70,35 @@ public class Model : MonoBehaviour
             // Create JSON objects
             jsonObject = JObject.Parse(jsonText);
         }
-        catch (JsonReaderException jsonEx)
+        catch (Exception e)
         {
-            Debug.Log($"JSON parsing error: {jsonEx.Message}");
-        }
-        catch (FileNotFoundException fnfEx)
-        {
-            Debug.Log($"File not found: {fnfEx.Message}\n");
-        }
-        catch (DirectoryNotFoundException dnfEx)
-        {
-            Debug.Log($"Directory not found: {dnfEx.Message}\n");
-        }
-        catch (IOException ioEx)
-        {
-            Debug.Log($"I/O error: {ioEx.Message}\n");
-        }
-        catch (Exception ex)
-        {
-            Debug.Log($"An error occurred: {ex.Message}\n");
+            Debug.Log($"Error: {e.Message}");
         }
         try
         {
             resources = jsonObject["dcrgraph"]["specification"]["resources"];
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
-            Debug.Log($"{e.Message}: The JSON file contains no resources fields");
+            Debug.Log($"Error: {e.Message}");
         }
         try
         {
             constraints = jsonObject["dcrgraph"]["specification"]["constraints"];
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
             
-            Debug.Log($" {e.Message}: The JSON file contains no constraints fields\n");
+            Debug.Log($"Error: {e.Message}");
         }
         try
         {
             marking = jsonObject["dcrgraph"]["runtime"]["marking"];
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
             
-            Debug.Log($" {e.Message}: The JSON file contains no marking fields\n");
+            Debug.Log($"Error: {e.Message}");
         }
 
         // Process events
@@ -158,9 +142,9 @@ public class Model : MonoBehaviour
                 };
             }
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
-            Debug.Log($" {e.Message}: The JSON file contains no events\n");
+            Debug.Log($"Error: {e.Message}");
         }
     
         // Get label Mappings
@@ -178,10 +162,10 @@ public class Model : MonoBehaviour
                 }
             }
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
             
-            Debug.Log($" {e.Message}: The JSON file contains no mappings\n");
+            Debug.Log($"Error: {e.Message}");
         }
         // Map conditions
         try
@@ -190,9 +174,9 @@ public class Model : MonoBehaviour
             CreateConstraints(Conditions, conditions);
 
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
-            Debug.Log($" {e.Message}: The JSON file contains no conditions\n");
+            Debug.Log($"Error: {e.Message}");
         }
 
         // Create responses
@@ -202,9 +186,9 @@ public class Model : MonoBehaviour
             CreateConstraints(Responses, responses);
 
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
-            Debug.Log($" {e.Message}: The JSON file contains no responses\n");
+            Debug.Log($"Error: {e.Message}");
         }
 
         // Create excludes
@@ -213,9 +197,9 @@ public class Model : MonoBehaviour
             JToken excludes = constraints["excludes"]["exclude"];
             CreateConstraints(Excludes, excludes);
         }
-        catch (InvalidOperationException e)
-        {  
-            Debug.Log($" {e.Message}: The JSON file contains no excludes\n");
+        catch (Exception e)
+        {
+            Debug.Log($"Error: {e.Message}");
         }
 
         // Create includes
@@ -224,9 +208,9 @@ public class Model : MonoBehaviour
             JToken includes = constraints["includes"]["include"];
             CreateConstraints(Includes, includes);
         }
-        catch (InvalidOperationException e)
-        {  
-            Debug.Log($" {e.Message}: The JSON file contains no includes\n");
+        catch (Exception e)
+        {
+            Debug.Log($"Error: {e.Message}");
         }
 
         // Create milestones
@@ -235,9 +219,9 @@ public class Model : MonoBehaviour
             JToken milestones = constraints["milestones"]["milestone"];
             CreateConstraints(Milestones, milestones);
         }
-        catch (InvalidOperationException e)
-        {  
-            Debug.Log($" {e.Message}: The JSON file contains no milestones\n");
+        catch (Exception e)
+        {
+            Debug.Log($"Error: {e.Message}");
         }
 
         // Create initial executed markings
@@ -246,9 +230,9 @@ public class Model : MonoBehaviour
             JToken executedEvents = marking["executed"]["event"];
             CreateMarkings(Executed, executedEvents);
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
-            Debug.Log($" {e.Message}: The JSON file contains no executed events\n");
+            Debug.Log($"Error: {e.Message}");
         }
 
         // Create initial included markings
@@ -257,9 +241,9 @@ public class Model : MonoBehaviour
             JToken includedEvents = marking["included"]["event"];
             CreateMarkings(Included, includedEvents);
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
-            Debug.Log($" {e.Message}: The JSON file contains no included events\n");
+            Debug.Log($"Error: {e.Message}");
         }
 
         // Create initial pending markings
@@ -268,12 +252,11 @@ public class Model : MonoBehaviour
             JToken pendingResponses = marking["pendingResponses"]["event"];
             CreateMarkings(Pending, pendingResponses);
         }
-        catch (InvalidOperationException e)
+        catch (Exception e)
         {
-            Debug.Log($" {e.Message}: The JSON file contains no pending events\n");
+            Debug.Log($"Error: {e.Message}");
         }
         
-
         _history.Add(new ModelState(GetExecuted(), GetIncluded(), GetPending()));
     }
     public Dictionary<string, string> GetActivityLabels()

@@ -176,29 +176,32 @@ public class ViewActivity : MonoBehaviour
             _effectsController.ToggleGlitterLock(false);
             _lockSignalRunning = false;
         }
-
-        // Toggle effects
-        switch(_sceneName)
-        {
-            case "Rpg":
-            case "Rpg_Abstract":
-            case "Rpg_English":
-            case "Rpg_English_Abstract":
-                _effectsController.ToggleFog(isDisabled);
-                _effectsController.ToggleDoorAndWalls(false);
-                break;
-            case "Office":
-            case "Office_Abstract":
-            case "Office_English":
-            case "Office_English_Abstract":
-                _effectsController.ToggleDoorAndWalls(isDisabled);
-                _effectsController.ToggleFog(false);
-                break;
-            default:
-                _effectsController.ToggleFog(isDisabled);
-                _effectsController.ToggleDoorAndWalls(false);
-                break;
-        }
+        // Modify this as needed when creating scenes.
+        // // Toggle effects
+        // switch(_sceneName)
+        // {
+        //     case "Rpg":
+        //     case "Rpg_Abstract":
+        //     case "Rpg_English":
+        //     case "Rpg_English_Abstract":
+        //         _effectsController.ToggleFog(isDisabled);
+        //         _effectsController.ToggleDoorAndWalls(false);
+        //         break;
+        //     case "Office":
+        //     case "Office_Abstract":
+        //     case "Office_English":
+        //     case "Office_English_Abstract":
+        //         _effectsController.ToggleDoorAndWalls(isDisabled);
+        //         _effectsController.ToggleFog(false);
+        //         break;
+        //     default:
+        //         _effectsController.ToggleFog(isDisabled);
+        //         _effectsController.ToggleDoorAndWalls(false);
+        //         break;
+        // }
+        
+        _effectsController.ToggleDoorAndWalls(isDisabled);
+        _effectsController.ToggleFog(false);
         _buttonController.ToggleRotation(!isDisabled);
 
         // Set class variable
