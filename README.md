@@ -1,8 +1,8 @@
 This repository contains the accompanying materials for the paper “Towards Immersive Process Simulation for Declarative Models”.
 
-The game artifact described in the paper can be sampled by visiting the URL https://play.unity.com/mg/other/webgl-builds-383335
+The game artifact "3DCR Explorer" described in the paper can be sampled by visiting the URL https://play.unity.com/mg/other/webgl-builds-383335
 
-In order to play the game please note the following:
+In order to play the 3DCR Explorer please note the following:
 
 1. If pressing the keys does not work, try clicking with the mouse button within the game view.
 2. Switch views by using the 1,2,3 keys
