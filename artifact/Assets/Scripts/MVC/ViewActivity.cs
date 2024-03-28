@@ -200,8 +200,8 @@ public class ViewActivity : MonoBehaviour
         //         break;
         // }
         
-        _effectsController.ToggleDoorAndWalls(isDisabled);
-        _effectsController.ToggleFog(false);
+        _effectsController.ToggleFog(isDisabled);
+        _effectsController.ToggleDoorAndWalls(false);
         _buttonController.ToggleRotation(!isDisabled);
 
         // Set class variable
